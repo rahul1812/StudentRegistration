@@ -8,10 +8,10 @@ import java.util.Optional;
 public interface StudentDao {
 
     List<Student> list();
-    void create(Student student);
+    Optional<Integer> create(Student student);
 
-    void update(Student student, int id);
+    Optional<Integer> update(Student student, int id);
 
-    void delete(int id);
+    Optional<Integer> delete(int id);
     Optional get(int id);
 }
