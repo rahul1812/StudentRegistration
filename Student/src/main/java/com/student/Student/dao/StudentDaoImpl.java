@@ -72,7 +72,7 @@ public class StudentDaoImpl implements StudentDao{
 
     @Override
     public Optional get(int id) {
-        String sql="student_id, first_name,last_name,age,address from student where student_id = ?";
+        String sql="Select student_id, first_name,last_name,age,address from student where student_id = ?";
         Student student=null;
         try{
             student=jdbcTemplate.queryForObject(sql, new Object[]{id},rowMapper);
