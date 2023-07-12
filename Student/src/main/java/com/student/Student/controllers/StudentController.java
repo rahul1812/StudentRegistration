@@ -18,9 +18,10 @@ import java.util.Optional;
 public class StudentController {
     @Autowired
    private StudentDao studentDao;
-    @GetMapping("/getAll")
-    public List<Student> getAllStudent() {
-        return studentDao.list();
+    @GetMapping("/")
+    public ResponseEntity<List<Student>> getAllStudent() {
+        List<Student> studentList = studentDao.list();
+        return ResponseEntity.ok(studentList);
     }
 
     @GetMapping("/{id}")
@@ -28,4 +29,6 @@ public class StudentController {
         Optional<Student> students = studentDao.get(id);
         return ResponseEntity.ok(students.get());
     }
+
+
 }
