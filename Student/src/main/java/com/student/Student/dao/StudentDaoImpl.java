@@ -37,7 +37,7 @@ public class StudentDaoImpl implements StudentDao{
     }
 
     @Override
-    public void create(Student student) {
+    public Optional<Integer> create(Student student) {
      String sql= "insert into student(student_id, first_name,last_name,age,address)values(?,?,?,?,?)";
      Optional<Integer> insert = Optional.of(jdbcTemplate.update(sql, student.getStudent_id(), student.getFirst_name(), student.getLast_name(),
              student.getAge(), student.getAddress()));
@@ -46,10 +46,11 @@ public class StudentDaoImpl implements StudentDao{
                 log.info("New student created: " + updatedRows);
             }
         });
+        return insert;
     }
 
     @Override
-    public void update(Student student, int id) {
+    public Optional<Integer> update(Student student, int id) {
      String sql= "update student set first_name = ?, last_name = ?, age = ?, address = ? where student_id = ?";
      Optional<Integer> update = Optional.of(jdbcTemplate.update(sql, student.getFirst_name(), student.getLast_name(),
              student.getAge(), student.getAddress(), student.getStudent_id()));
@@ -58,16 +59,18 @@ public class StudentDaoImpl implements StudentDao{
                 log.info("Student updated Successfully: " + updatedRows);
             }
         });
+        return update;
     }
 
     @Override
-    public void delete(int id) {
+    public Optional<Integer> delete(int id) {
        Optional<Integer> deleted = Optional.of(jdbcTemplate.update("delete from student where student_id = ?", id));
         deleted.ifPresent(updatedRows -> {
             if (updatedRows == 1) {
                 log.info("Student deleted Successfully: " + id);
             }
         });
+        return deleted;
     }
 
     @Override
