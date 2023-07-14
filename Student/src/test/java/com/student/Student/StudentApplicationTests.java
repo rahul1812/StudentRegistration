@@ -9,9 +9,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @SpringBootTest
 class StudentApplicationTests {
-	@Test
-	void contextLoads() {
-		Assertions.assertTrue(true);
-	}
+    @Test
+    void contextLoads() {
+        Assertions.assertTrue(true);
+    }
 
 }
