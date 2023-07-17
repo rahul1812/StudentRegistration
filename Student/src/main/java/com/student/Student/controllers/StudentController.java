@@ -27,14 +27,14 @@ public class StudentController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity getStudentById(@RequestBody Student student) {
+    public ResponseEntity saveStudent(@RequestBody Student student) {
         Optional<Integer> result = studentDao.create(student);
         return (result.get() == 1) ? ResponseEntity.ok("Data added Successfully") :
                 ResponseEntity.badRequest().body("Failed to delete student");
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity getStudentById(@RequestBody Student student, @PathVariable int student_id) {
+    public ResponseEntity updateStudent(@RequestBody Student student, @PathVariable int student_id) {
         Optional<Integer> result = studentDao.update(student, student_id);
         return (result.get() == 1) ? ResponseEntity.ok("Data Updated Successfully") :
                 ResponseEntity.badRequest().body("Failed to delete student");
